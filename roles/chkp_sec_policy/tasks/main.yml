@@ -1,0 +1,4 @@
+---
+# tasks file for R80_Policy
+- include_tasks: R80_Policy.yml
+- include_tasks: cp_mgmt_simple_gateway.yml

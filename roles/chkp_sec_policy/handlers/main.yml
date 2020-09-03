@@ -1,0 +1,26 @@
+---
+# handlers file for R80_Policy
+- name: Publish Handeler
+  cp_mgmt_publish:
+  notify: Install Access Policy
+
+- name: Install Access Policy 
+  cp_mgmt_install_policy:
+    access: true
+    threat_prevention: false
+    policy_package: "{{ policy_name }}"
+    targets:
+#      - "{{ cluster_name }}"
+      - sg101
+  notify: Install Threat Policy
+  when: No_Policy_Install is not defined
+
+- name: Install Threat Policy
+  cp_mgmt_install_policy:
+    access: false
+    threat_prevention: true
+    policy_package: "{{ policy_name }}"
+    targets:
+#      - "{{ cluster_name }}"
+      - sg101
+  when: No_Policy_Install is not defined

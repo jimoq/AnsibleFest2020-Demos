@@ -1,0 +1,34 @@
+---
+# Task to add, set or deletea gateway object in Check Point management server
+# The variables used is defined in ../defaults/main.yml of this role.
+- name: Add, set or delete simple-gateway
+  cp_mgmt_simple_gateway:
+    state: "{{item.state}}"
+    name: "{{item.name}}"
+    anti_bot: "{{item.anti_bot}}"
+    anti_virus: "{{item.anti_virus}}"
+    application_control: "{{item.appi_ctrl}}"
+    color: "{{item.color}}"
+    firewall: "{{item.firewall}}"
+    ips: "{{item.ips}}"
+    ipv4_address: "{{item.eth0_ipv4}}" 
+    one_time_password: "{{item.sickey}}"
+    threat_emulation: "{{item.threat_emulation}}"
+    url_filtering: "{{item.url_filtering}}"
+    #version: "{{item.gw_version}}" # curently broken 
+    interfaces:
+    - name: eth0
+      anti_spoofing: "{{item.eth0_anti_spoofing}}"
+      ipv4_address: "{{item.eth0_ipv4}}" 
+      ipv4_network_mask: "{{item.eth0_ipv4_network_mask}}"
+      topology: "{{item.eth0_topology}}"
+    - name: eth1
+      anti_spoofing: "{{item.eth1_anti_spoofing}}"
+      ipv4_address: "{{item.eth1_ipv4}}" 
+      ipv4_network_mask: "{{item.eth1_ipv4_network_mask}}"
+      topology: "{{item.eth0_topology}}"
+      topology_settings:
+        ip_address_behind_this_interface: "{{item.eth1_topology_ip_behind_if}}"
+  loop: "{{cp_mgmt_simple_gateway_tasks}}"
+#
+

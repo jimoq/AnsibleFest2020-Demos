@@ -1,0 +1,4 @@
+---
+# List of gateway objects to add
+cp_mgmt_simple_gateway_tasks:
+- { state: present, name: sg101, anti_bot: true, anti_virus: true, appi_ctrl: true, color: blue, firewall: true, ips: true, sickey: vpn123, threat_emulation: false, url_filtering: true, gw_version: R80.30, eth0_ipv4: 192.168.233.101, eth0_ipv4_network_mask: 255.255.255.0, eth0_anti_spoofing: true, eth0_topology: External, eth1_anti_spoofing: true, eth1_ipv4: 10.101.1.1, eth1_ipv4_network_mask: 255.255.255.0, eth1_topology: Internal, eth1_topology_ip_behind_if: network defined by the interface ip and net mask }
