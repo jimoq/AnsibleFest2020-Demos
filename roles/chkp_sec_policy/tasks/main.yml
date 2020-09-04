@@ -1,4 +1,8 @@
 ---
-# tasks file for R80_Policy
-- include_tasks: R80_Policy.yml
+ tasks file for R80_Policy
 - include_tasks: cp_mgmt_simple_gateway.yml
+- include_tasks: cp_mgmt_package.yml
+- include_tasks: cp_mgmt_network.yml
+- include_tasks: cp_mgmt_host.yml
+- include_tasks: cp_mgmt_access_rule.yml
+#- include_tasks: R80_Policy.yml

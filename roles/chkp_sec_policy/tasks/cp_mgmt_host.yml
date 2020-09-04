@@ -1,0 +1,15 @@
+---
+# Add or delete  host object in Check Point management server
+- name: add-host or delete-host
+  cp_mgmt_host:
+    state: "{{item.state}}"
+    color: "{{item.color}}"
+    name: "{{item.name}}"
+    ip_address: "{{item.ip}}"
+    nat_settings:
+      auto_rule: "{{item.nat_auto_rule}}"
+      install_on: "{{item.nat_install_on}}"
+      ipv4_address: "{{item.nat_ipv4}}"
+      method: "{{item.nat_method}}"
+  loop: "{{cp_mgmt_host_vars}}"
+  notify: Publish Handeler

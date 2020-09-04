@@ -2,9 +2,10 @@
 # Task to add, set or deletea gateway object in Check Point management server
 # The variables used is defined in ../defaults/main.yml of this role.
 - name: Add, set or delete simple-gateway
-  cp_mgmt_simple_gateway:
+  check_point.mgmt.cp_mgmt_simple_gateway:
     state: "{{item.state}}"
     name: "{{item.name}}"
+    comments: "{{item.comments}}" 
     anti_bot: "{{item.anti_bot}}"
     anti_virus: "{{item.anti_virus}}"
     application_control: "{{item.appi_ctrl}}"
@@ -15,20 +16,47 @@
     one_time_password: "{{item.sickey}}"
     threat_emulation: "{{item.threat_emulation}}"
     url_filtering: "{{item.url_filtering}}"
-    #version: "{{item.gw_version}}" # curently broken 
+    gateway_version: "{{item.gw_version}}"
     interfaces:
     - name: eth0
-      anti_spoofing: "{{item.eth0_anti_spoofing}}"
+      color: "{{item.eth0_color}}"
+      comments: "{{item.eth0_comments}}"
       ipv4_address: "{{item.eth0_ipv4}}" 
       ipv4_network_mask: "{{item.eth0_ipv4_network_mask}}"
+      anti_spoofing: "{{item.eth0_anti_spoofing}}" 
       topology: "{{item.eth0_topology}}"
+      security_zone: "{{item.eth0_security_zone}}"
+      security_zone_settings:
+        specific_zone: "{{item.eth0_specific_zone}}"      
     - name: eth1
-      anti_spoofing: "{{item.eth1_anti_spoofing}}"
+      color: "{{item.eth1_color}}"
+      comments: "{{item.eth1_comments}}"
       ipv4_address: "{{item.eth1_ipv4}}" 
       ipv4_network_mask: "{{item.eth1_ipv4_network_mask}}"
-      topology: "{{item.eth0_topology}}"
+      anti_spoofing: "{{item.eth1_anti_spoofing}}"
+      topology: "{{item.eth1_topology}}"
       topology_settings:
         ip_address_behind_this_interface: "{{item.eth1_topology_ip_behind_if}}"
-  loop: "{{cp_mgmt_simple_gateway_tasks}}"
-#
+        interface_leads_to_dmz: true
+      security_zone: "{{item.eth1_security_zone}}"
+      security_zone_settings:
+        specific_zone: "{{item.eth1_specific_zone}}"
+    - name: eth2
+      color: "{{item.eth2_color}}"
+      comments: "{{item.eth2_comments}}"
+      ipv4_address: "{{item.eth2_ipv4}}" 
+      ipv4_network_mask: "{{item.eth2_ipv4_network_mask}}"
+      anti_spoofing: "{{item.eth2_anti_spoofing}}"
+      topology: "{{item.eth2_topology}}"
+      topology_settings:
+        ip_address_behind_this_interface: "{{item.eth2_topology_ip_behind_if}}"
+        interface_leads_to_dmz: true
+      security_zone: "{{item.eth2_security_zone}}"
+      security_zone_settings:
+        specific_zone: "{{item.eth2_specific_zone}}"
+  loop: "{{cp_mgmt_simple_gateway_vars}}"
+  notify: Publish Handeler
+
+#- set_fact:
+#    No_Policy_Install: true
 

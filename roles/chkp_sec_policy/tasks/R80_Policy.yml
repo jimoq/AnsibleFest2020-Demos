@@ -2,24 +2,17 @@
     - name:  Create web server for sales
       cp_mgmt_host:
         name: "Sales Web Server"
-        ip_address: 10.4.0.131
+        ip_address: 10.46.0.131
         color: red
       notify: Publish Handeler
 
     - name:  Create web server for development 
       cp_mgmt_host:
         name: "Dev Web Server"
-        ip_address: 10.1.0.132
+        ip_address: 10.11.0.132
         color: orange
       notify: Publish Handeler
         
-    - name: add-security-zone
-      cp_mgmt_security_zone:
-        color: blue 
-        name: InsideZone 
-        state: present
-      notify: Publish Handeler
-
 #    - set_fact:
 #        eth1_ip: '{{ mem1_eth1_ip + "/" + mem1_eth1_length }}'
 #
@@ -30,7 +23,7 @@
       cp_mgmt_network:
         name: "Internal_Network"
 #        subnet: "{{ eth1_network }}"
-        subnet: 1.1.1.0
+        subnet: 1.12.12.0
 #        mask_length: "{{ mem1_eth1_length }}"
         mask_length: 24
         state: present
@@ -44,7 +37,7 @@
     - name:  Create Jump Network
       cp_mgmt_network:
         name: "Jump_Network"
-        subnet: "10.2.0.0"
+        subnet: "10.23.20.0"
         mask_length: "24"
         state: present
         color: orange
@@ -93,10 +86,10 @@
         name: "DHCP Rules"
         position: "1"
         source:
-          - InsideZone
+          - InternalZone
+          - DMZZone
         service:
-          - dhcp
-          - dhcp-relay 
+          - dhcp 
         track:
           type: "Extended Log"
         action: Accept
