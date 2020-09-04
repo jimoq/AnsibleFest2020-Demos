@@ -1,7 +1,7 @@
 ---
 # Add or delete network object in Check Point management server
 - name: add-network or delete-network
-  cp_mgmt_network:
+  check_point.mgmt.cp_mgmt_network:
     state: "{{item.state}}"
     color: "{{item.color}}"
 #    groups: "{{item.groups}}"

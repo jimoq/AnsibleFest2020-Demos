@@ -1,7 +1,7 @@
 ---
 # Add or delete security policy package from Check Point management server
 - name: Add or delete policy package
-  cp_mgmt_package:
+  check_point.mgmt.cp_mgmt_package:
     state: "{{item.state}}"
     access: "{{item.access}}"
     color: "{{item.color}}"

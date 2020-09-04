@@ -1,0 +1,24 @@
+---
+#List of DC objects to create
+cp_mgmt_dc_vars:
+- { data_center_name: Test DC in VMware, name: WEB, uri: /Datacenters/Darkness/cloud02.local/WEB }
+- { data_center_name: Test DC in VMware, name: DB, uri: /Tags/Database Servers }
+- { data_center_name: Test DC in VMware, name: APP, uri: /Tags/Application Servers }
+
+#List of rules to create on in the policy package
+cp_mgmt_access_rule_vars:
+- { state: present, layer: Orchestration_Demo_Policy Network,  name: Access to Web Application,
+    position: 1,  source: any, destination: ["WEB"], service: ["http", "https"], action: Accept, track_type: log 
+  }
+- { state: present, layer: Orchestration_Demo_Policy Network, name: ACMECorp WebServer to APP, 
+    position: 2, source: ["WEB"], destination: APP, service: ["MySQL"], action: Accept, track_type: log 
+  }
+- { state: present, layer: Orchestration_Demo_Policy Network, name: ACMECorp AppServer to DB, 
+    position: 3, source: AppServers, destination: DB, service: ["MySQL"], action: Accept, track_type: log 
+  }
+- { state: present, layer: Orchestration_Demo_Policy Network, name: ACMECorp WebServer Outbound Access, 
+    position: 4, source: ["WEB"], destination: any, service: ["http", "https", "ntp", "dns"], action: Accept, track_type: log 
+  }
+  # Enable log on the existing cleanup rule
+- { state: present, layer: Orchestration_Demo_Policy Network, name: Cleanup rule, 
+    position: 5, source: any, destination: ["any"], service: ["any"], action: Drop, track_type: log }

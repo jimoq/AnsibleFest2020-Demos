@@ -1,7 +1,7 @@
 ---
 # Add or delete  host object in Check Point management server
 - name: add-host or delete-host
-  cp_mgmt_host:
+  check_point.mgmt.cp_mgmt_host:
     state: "{{item.state}}"
     color: "{{item.color}}"
     name: "{{item.name}}"

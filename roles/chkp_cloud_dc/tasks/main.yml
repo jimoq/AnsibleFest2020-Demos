@@ -1,0 +1,4 @@
+---
+# tasks file for chkp_cloud_dc
+- include_tasks: cp_mgmt_add_data_center_object.yml
+- include_tasks: cp_mgmt_access_rule.yml
