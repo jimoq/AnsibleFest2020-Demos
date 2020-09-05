@@ -1,0 +1,25 @@
+---
+- name: Build an inventory
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: Create a dynamic inventory
+      add_host:
+        hostname: sms61
+        ansible_host: 192.168.233.61
+        # Credentials for cp_mgmt* modules and Settings for the Check Point httpapi plugin that provides methods to connect to Checkpoint devices over a HTTP(S)-based api.
+        ansible_httpapi_use_ssl: True
+        ansible_httpapi_validate_certs: False
+        ansible_network_os: checkpoint
+        ansible_checkpoint_domain: SMC User
+        ansible_user: admin
+        ansible_ssh_pass: vpn123
+        groups: Check_Point
+
+- name:  Configure the Check Point security policy and Security gateways
+  hosts: sms61
+  connection: httpapi
+  gather_facts: no
+  roles:
+    - role: roles/chkp_deploy_software_package

@@ -9,4 +9,4 @@
     subnet: "{{ item.subnet | ipaddr('network') }}"
     subnet_mask: "{{ item.subnet | ipaddr('netmask') }}"
   loop: "{{cp_mgmt_network_vars}}"
-  notify: Publish Handeler
+  notify: Publish and install handler

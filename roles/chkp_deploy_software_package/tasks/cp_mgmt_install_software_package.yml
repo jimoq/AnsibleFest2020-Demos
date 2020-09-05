@@ -1,0 +1,15 @@
+---
+# Task to add install software package from on Check Point gateways
+# The variables used is defined in ../defaults/main.yml of this role.
+- name: install software package
+  check_point.mgmt.cp_mgmt_install_software_package:
+    name: Check_Point_R81EA_273_t19_Fresh_Install_and_Upgrade.tgz
+    method: upgrade
+    package_location: central
+    targets: "{{ policy_targets }}"
+#  loop: "{{cp_mgmt_simple_gateway_vars}}"
+  notify: Publish handler
+  register: install_package_response
+
+- debug:
+    var: install_package_response

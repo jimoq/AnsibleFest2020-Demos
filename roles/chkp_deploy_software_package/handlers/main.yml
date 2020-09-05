@@ -1,5 +1,5 @@
 ---
-# handlers file for chkp_sec_policy
+# handlers file for chkp_cloud_dc
 - name: Publish handler
   check_point.mgmt.cp_mgmt_publish:
   listen: Publish and install handler
@@ -12,10 +12,10 @@
     targets: "{{ policy_targets }}"
   listen: Publish and install handler
 
-- name: Install Threat Policy
-  check_point.mgmt.cp_mgmt_install_policy:
-    access: false
-    threat_prevention: true
-    policy_package: "{{ policy_name }}"
-    targets: "{{ policy_targets }}"
-  listen: Publish and install handler
+#- name: Install Threat Policy
+#  check_point.mgmt.cp_mgmt_install_policy:
+#    access: false
+#    threat_prevention: true
+#    policy_package: "{{ policy_name }}"
+#    targets: "{{ policy_targets }}"
+#  listen: Publish and install handler

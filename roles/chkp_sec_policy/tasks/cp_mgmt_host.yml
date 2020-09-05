@@ -12,4 +12,4 @@
       ipv4_address: "{{item.nat_ipv4}}"
       method: "{{item.nat_method}}"
   loop: "{{cp_mgmt_host_vars}}"
-  notify: Publish Handeler
+  notify: Publish and install handler

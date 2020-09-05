@@ -9,4 +9,4 @@
     name: "{{item.name}}"
     threat_prevention: "{{item.threat_prevention}}"
   loop: "{{cp_mgmt_package_vars}}"
-  notify: Publish Handeler
+  notify: Publish and install handler

@@ -1,4 +1,5 @@
 ---
+# Default vars for chkp_cloud_dc role 
 #List of DC objects to create
 cp_mgmt_dc_vars:
 - { data_center_name: Test DC in VMware, name: WEB, uri: /Datacenters/Darkness/cloud02.local/WEB }
