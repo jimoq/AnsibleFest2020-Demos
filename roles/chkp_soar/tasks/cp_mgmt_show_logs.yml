@@ -1,0 +1,18 @@
+---
+# Task to identify any reconnaissance attacks in form of portscans in the security logs
+# The variables used is defined in ../defaults/main.yml of this role.
+- name: identify any reconnaissance attacks
+  check_point.mgmt.cp_mgmt_show_logs:
+    new_query:
+      filter: attack:"Port Scan"
+      #max_logs_per_request: 1
+      time_frame: today
+  register: show_log_response
+
+# Get the source IP in the log entry
+- set_fact:
+     attacker_src_ip: "{{ show_log_response['show-logs'].logs[0].src }}"
+
+# Get destination IP in the log entry
+- set_fact:
+     target_dst_ip: "{{ show_log_response['show-logs'].logs[0].dst }}"

@@ -18,9 +18,9 @@
         #ansible_api_key: gUELBJjIvWQyszkrwMJUZA==
         groups: Check_Point
 
-- name:  Configure the Check Point security policy and Security gateways
+- name:  Security Orchestration, Automation and Response - Identify reconnaissance attacks
   hosts: sms61
   connection: httpapi
   gather_facts: no
   roles:
-    - role: roles/chkp_cloud_dc
+    - role: roles/chkp_soar

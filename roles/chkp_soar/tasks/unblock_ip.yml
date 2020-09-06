@@ -1,0 +1,7 @@
+---
+- name: Delete access rule that deny access from source to destination
+  checkpoint_access_rule:
+    state: absent
+    layer: Network
+    position: top
+    name: "asa-drop-{{ source_ip }}-to-{{ destination_ip }}"

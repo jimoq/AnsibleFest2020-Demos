@@ -1,0 +1,21 @@
+---
+# handlers file for chkp_soar
+- name: Publish handler
+  check_point.mgmt.cp_mgmt_publish:
+  listen: Publish and install handler
+
+- name: Install Access Policy 
+  check_point.mgmt.cp_mgmt_install_policy:
+    access: true
+    threat_prevention: false
+    policy_package: "{{ policy_name }}"
+    targets: "{{ policy_targets }}"
+  listen: Publish and install handler
+
+#- name: Install Threat Policy
+#  check_point.mgmt.cp_mgmt_install_policy:
+#    access: false
+#    threat_prevention: true
+#    policy_package: "{{ policy_name }}"
+#    targets: "{{ policy_targets }}"
+#  listen: Publish and install handler

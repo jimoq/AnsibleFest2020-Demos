@@ -1,0 +1,9 @@
+---
+# Default vars for chkp_soar role 
+
+# List of gateways to install the policy to
+#policy_targets: ["vsphere_sg01","azure_sg02"]
+policy_targets: ["aws_sg03"]
+
+#Policy packages to install
+policy_name: Orchestration_Demo_Policy
