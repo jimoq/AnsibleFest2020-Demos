@@ -4,6 +4,7 @@
     object_filter: "attacker-{{ attacker_src_ip}}"
     object_type: host
   register: attacker_host
+  when: attacker_src_ip is defined
 
 - name: Create attacker host object if it does not exist
   check_point.mgmt.cp_mgmt_host:
@@ -11,7 +12,7 @@
     color: red
     ip_address: "{{ attacker_src_ip }}"
     ignore_warnings: true
-  when: attacker_host['ansible_facts']['checkpoint_objects']['total']|string == "0"
+  when: attacker_src_ip is defined and attacker_host['ansible_facts']['checkpoint_objects']['total']|string == "0"
   notify: Publish and install handler
 
 - name: Check if target host is defined as an object
@@ -19,6 +20,7 @@
     object_filter: "target-{{ target_dst_ip }}"
     object_type: host
   register: target_host
+  when: target_dst_ip is defined
 
 - name: Create target host object is it does not exist
   check_point.mgmt.cp_mgmt_host:
@@ -26,7 +28,7 @@
     color: blue
     ip_address: "{{ target_dst_ip }}"
     ignore_warnings: true
-  when: target_host['ansible_facts']['checkpoint_objects']['total']|string == "0"
+  when: target_dst_ip is defined and target_host['ansible_facts']['checkpoint_objects']['total']|string == "0"
   notify: Publish and install handler
 
 - name: Create access rule to quarantine and deny access from attacker to target
@@ -40,3 +42,4 @@
     track:
       type: log
   notify: Publish and install handler
+  when:  attacker_src_ip is defined and target_dst_ip is defined

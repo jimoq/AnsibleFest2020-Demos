@@ -7,13 +7,15 @@
     new_query:
       filter: attack:"Port Scan"
       max_logs_per_request: 1
-      time_frame: today
+      time_frame: last-hour
   register: show_log_response
 
 # Get the source IP in the log entry
 - set_fact:
      attacker_src_ip: "{{ show_log_response['show-logs'].logs[0].src }}"
+  when: show_log_response['show-logs'].logs[0].src is defined
 
 # Get destination IP in the log entry
 - set_fact:
      target_dst_ip: "{{ show_log_response['show-logs'].logs[0].dst }}"
+  when: show_log_response['show-logs'].logs[0].dst is defined
