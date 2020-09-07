@@ -3,7 +3,7 @@
     name: Host Port Scan
     overrides:
     - action: Accept
-      capture_packets: true
+      capture_packets: false
       profile: Optimized
       track: log
   notify: Publish and install handler
