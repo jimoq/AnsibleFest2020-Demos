@@ -4,6 +4,7 @@
   check_point.mgmt.cp_mgmt_add_data_center_object:
     data_center_name: "{{item.data_center_name}}"
     name: "{{item.name}}"
+    color: "{{ item.color }}"
     uri: "{{item.uri}}"
   loop: "{{cp_mgmt_dc_vars}}"
   notify: Publish Handeler
