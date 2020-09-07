@@ -29,11 +29,11 @@
   when: target_host['ansible_facts']['checkpoint_objects']['total']|string == "0"
   notify: Publish and install handler
 
-- name: Create access rule to deny access from source to destination
+- name: Create access rule to quarantine and deny access from attacker to target
   check_point.mgmt.cp_mgmt_access_rule:
     layer: "{{ policy_name }} Network"
     position: 1
-    name: "Prevent reconnaissance attack from {{ attacker_src_ip}} to {{ target_dst_ip }}"
+    name: "Quarantine attacker and prevent reconnaissance attack from {{ attacker_src_ip}} to {{ target_dst_ip }}"
     source: "attacker-{{ attacker_src_ip}}"
     destination: "target-{{ target_dst_ip }}"
     action: Drop

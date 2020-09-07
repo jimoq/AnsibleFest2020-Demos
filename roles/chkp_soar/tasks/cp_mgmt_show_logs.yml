@@ -6,7 +6,7 @@
   check_point.mgmt.cp_mgmt_show_logs:
     new_query:
       filter: attack:"Port Scan"
-      #max_logs_per_request: 1
+      max_logs_per_request: 1
       time_frame: today
   register: show_log_response
 
