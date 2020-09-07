@@ -7,7 +7,6 @@
     method: upgrade
     package_location: target-machine
     targets: "{{ policy_targets }}"
-#  loop: "{{cp_mgmt_simple_gateway_vars}}"
   notify: Publish handler
   register: install_package_response
 

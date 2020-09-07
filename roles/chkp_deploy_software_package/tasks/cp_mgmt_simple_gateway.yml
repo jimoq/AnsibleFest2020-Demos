@@ -56,7 +56,6 @@
         specific_zone: "{{item.eth2_specific_zone}}"
     auto_publish_session: true
   loop: "{{cp_mgmt_simple_gateway_vars}}"
-#  notify: Publish and install handler
 
 - name: Install Access Policy 
   check_point.mgmt.cp_mgmt_install_policy:

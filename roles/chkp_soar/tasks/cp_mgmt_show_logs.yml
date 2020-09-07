@@ -11,11 +11,13 @@
   register: show_log_response
 
 # Get the source IP in the log entry
-- set_fact:
+- name : Get the attacker source IP from the log entry 
+  set_fact:
      attacker_src_ip: "{{ show_log_response['show-logs'].logs[0].src }}"
   when: show_log_response['show-logs'].logs[0].src is defined
 
 # Get destination IP in the log entry
-- set_fact:
+- name : Get the target destination IP from the log entry
+  set_fact:
      target_dst_ip: "{{ show_log_response['show-logs'].logs[0].dst }}"
   when: show_log_response['show-logs'].logs[0].dst is defined
