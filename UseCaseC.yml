@@ -13,9 +13,9 @@
         ansible_httpapi_validate_certs: False
         ansible_network_os: check_point.mgmt.checkpoint
         ansible_checkpoint_domain: SMC User
-        ansible_user: admin
-        ansible_ssh_pass: vpn123
-        #ansible_api_key: gUELBJjIvWQyszkrwMJUZA==
+        #ansible_user: [Check Point admin username]
+        #ansible_ssh_pass: [Check Point admin password]
+        ansible_api_key: "{{ lookup('env','VAR_mgmt_api_key') }}"
         groups: Check_Point
 
 - name:  Update security policy to use datacenter objects to adapt security at the speed of DevOps
