@@ -1,6 +1,7 @@
 ---
 # Task to identify any reconnaissance attacks in form of portscans in the security logs
 # The variables used is defined in ../defaults/main.yml of this role.
+# The task requires core protection Host Port Scan to be activated.
 - name: identify any reconnaissance attacks
   check_point.mgmt.cp_mgmt_show_logs:
     new_query:

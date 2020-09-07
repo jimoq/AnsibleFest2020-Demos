@@ -1,0 +1,10 @@
+- name: Activate core protection Host Port Scan on the Optimized protection profile
+  cp_mgmt_threat_protection_override:
+    name: Host Port Scan
+    overrides:
+    - action: Accept
+      capture_packets: true
+      profile: Optimized
+      track: log
+    state: present
+  notify: Publish and install handler
