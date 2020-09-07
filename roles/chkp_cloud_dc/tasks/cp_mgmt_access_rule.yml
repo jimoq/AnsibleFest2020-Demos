@@ -5,7 +5,7 @@
     state: "{{item.state}}"
     layer: "{{item.layer}}"
     name: "{{item.name}}"
-    position: "{{item.position}}"
+#    position: "{{item.position}}"
     source: "{{item.source}}"
     destination: "{{item.destination}}"
     service: "{{item.service}}"

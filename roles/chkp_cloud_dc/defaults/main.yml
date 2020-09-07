@@ -9,17 +9,14 @@ cp_mgmt_dc_vars:
 #List of rules to change on in the policy package
 cp_mgmt_access_rule_vars:
 - { state: present, layer: Orchestration_Demo_Policy Network,  name: Access to Web Application,
-    position: 2,  source: any, destination: ["WEB"], service: ["http", "https"], action: Accept, track_type: log 
+    source: any, destination: ["WEB"], service: ["http", "https"], action: Accept, track_type: log 
   }
 - { state: present, layer: Orchestration_Demo_Policy Network, name: ACMECorp WebServer to APP, 
-    position: 3, source: ["WEB"], destination: APP, service: ["MySQL"], action: Accept, track_type: log 
+    source: ["WEB"], destination: APP, service: ["MySQL"], action: Accept, track_type: log 
   }
 - { state: present, layer: Orchestration_Demo_Policy Network, name: ACMECorp AppServer to DB, 
-    position: 4, source: AppServers, destination: DB, service: ["MySQL"], action: Accept, track_type: log 
+    source: APP, destination: DB, service: ["MySQL"], action: Accept, track_type: log 
   }
 - { state: present, layer: Orchestration_Demo_Policy Network, name: ACMECorp WebServer Outbound Access, 
-    position: 5, source: ["WEB"], destination: any, service: ["http", "https", "ntp", "dns"], action: Accept, track_type: log 
+    source: ["WEB"], destination: any, service: ["http", "https", "ntp", "dns"], action: Accept, track_type: log 
   }
-  # Enable log on the existing cleanup rule
-#- { state: present, layer: Orchestration_Demo_Policy Network, name: Cleanup rule, 
-#    position: 6, source: any, destination: ["any"], service: ["any"], action: Drop, track_type: log }
