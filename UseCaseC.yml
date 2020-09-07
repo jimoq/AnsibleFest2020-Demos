@@ -18,7 +18,7 @@
         #ansible_api_key: gUELBJjIvWQyszkrwMJUZA==
         groups: Check_Point
 
-- name:  Configure the Check Point security policy and Security gateways
+- name:  Update security policy to use datacenter objects to adapt security at the speed of DevOps
   hosts: sms61
   connection: httpapi
   gather_facts: no
