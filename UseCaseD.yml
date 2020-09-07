@@ -13,7 +13,7 @@
         ansible_httpapi_validate_certs: False
         ansible_network_os: checkpoint
         ansible_checkpoint_domain: SMC User
-        ansible_user: api_admin
+        ansible_user: admin
         ansible_ssh_pass: vpn123
         #ansible_api_key: gUELBJjIvWQyszkrwMJUZA==
         groups: Check_Point
