@@ -55,6 +55,7 @@
       security_zone_settings:
         specific_zone: "{{item.eth2_specific_zone}}"
     auto_publish_session: true
+  no_log: true
   loop: "{{cp_mgmt_simple_gateway_vars}}"
 
 - name: Install Access Policy 
