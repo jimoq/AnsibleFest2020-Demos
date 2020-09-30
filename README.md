@@ -1,4 +1,4 @@
-# AnsibleFest2020 Check Point demo use cases
+# AnsibleFest  - 2020 Check Point demo use cases
 
 ## Overview
 
