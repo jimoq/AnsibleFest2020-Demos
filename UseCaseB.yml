@@ -6,20 +6,20 @@
   tasks:
     - name: Create a dynamic inventory
       add_host:
-        hostname: sms61
-        ansible_host: 192.168.233.61
+        hostname: "{{ lookup('env','VAR_mgmt_hostname') }}"
+        ansible_host: "{{ lookup('env','VAR_mgmt_IP') }}"
         # Credentials for cp_mgmt* modules and Settings for the Check Point httpapi plugin that provides methods to connect to Checkpoint devices over a HTTP(S)-based api.
         ansible_httpapi_use_ssl: True
         ansible_httpapi_validate_certs: False
         ansible_network_os: check_point.mgmt.checkpoint
         ansible_checkpoint_domain: SMC User
-        #ansible_user: [Check Point admin username]
-        #ansible_ssh_pass: [Check Point admin password]
+        #ansible_user: "{{ lookup('env','VAR_mgmt_api_user') }}"
+        #ansible_ssh_pass: "{{ lookup('env','VAR_mgmt_api_password') }}"
         ansible_api_key: "{{ lookup('env','VAR_mgmt_api_key') }}"
         groups: Check_Point
 
 - name:  Security Orchestration, Automation and Response - Identify reconnaissance attacks
-  hosts: sms61
+  hosts: "{{ lookup('env','VAR_mgmt_hostname') }}"
   connection: httpapi
   gather_facts: no
   roles:
